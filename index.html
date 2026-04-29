@@ -206,8 +206,7 @@ async function toggleKeyConnect() {
   keyConnecting = true;
   try {
     const device = await navigator.bluetooth.requestDevice({
-      filters: [{ namePrefix: 'M3CubeKey_' }],
-      optionalServices: [KEY_SVC]
+      filters: [{ services: [KEY_SVC] }]
     });
     const server = await device.gatt.connect();
     const svc    = await server.getPrimaryService(KEY_SVC);
@@ -243,8 +242,7 @@ async function toggleMouseConnect() {
   mouseConnecting = true;
   try {
     const device = await navigator.bluetooth.requestDevice({
-      filters: [{ namePrefix: 'M3CubeMouse_' }],
-      optionalServices: [MSE_SVC]
+      filters: [{ services: [MSE_SVC] }]
     });
     const server = await device.gatt.connect();
     const svc    = await server.getPrimaryService(MSE_SVC);
